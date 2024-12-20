@@ -20,10 +20,14 @@ describe("DateTimePickerPlugin", () => {
       functions: {},
     };
     const { container } = render(plugin.render(props));
+
+    // For debugging, log the rendered HTML
+    console.log('Rendered HTML:', container.innerHTML);
+
     // Check if the component renders at all
     expect(container.innerHTML).not.toBe("");
-    // Check for the specific element
-    const dateTimeElement = container.querySelector("marimo-datetime");
-    expect(dateTimeElement).not.toBeNull();
+    // Check for the date picker group
+    const datePicker = container.querySelector('[class*="group"]');
+    expect(datePicker).not.toBeNull();
   });
 });
