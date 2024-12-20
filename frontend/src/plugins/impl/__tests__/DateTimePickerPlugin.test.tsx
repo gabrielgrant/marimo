@@ -9,7 +9,7 @@ describe("DateTimePickerPlugin", () => {
     const host = document.createElement("div");
     const props = {
       host,
-      value: "",  // Empty string instead of undefined since type T = string
+      value: "", // Empty string instead of undefined since type T = string
       setValue: () => {},
       data: {
         label: null,
@@ -22,7 +22,7 @@ describe("DateTimePickerPlugin", () => {
     const { container } = render(plugin.render(props));
 
     // For debugging, log the rendered HTML
-    console.log('Rendered HTML:', container.innerHTML);
+    console.log("Rendered HTML:", container.innerHTML);
 
     // Check if the component renders at all
     expect(container.innerHTML).not.toBe("");
