@@ -1,20 +1,13 @@
 import { DateTimePickerPlugin } from "../DateTimePickerPlugin";
 import { render } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import type { IPluginProps } from "../../types";
+import { expect, describe, it } from "vitest";
 
 describe("DateTimePickerPlugin", () => {
   it("should render when initial value is not provided", () => {
     const plugin = new DateTimePickerPlugin();
     // Create a host element as required by IPluginProps
     const host = document.createElement("div");
-    const props: IPluginProps<string, {
-      label: string | null;
-      start: string;
-      stop: string;
-      step?: string;
-      fullWidth: boolean;
-    }> = {
+    const props = {
       host,
       value: "",  // Empty string instead of undefined since type T = string
       setValue: () => {},
@@ -27,6 +20,10 @@ describe("DateTimePickerPlugin", () => {
       functions: {},
     };
     const { container } = render(plugin.render(props));
-    expect(container.querySelector("marimo-datetime")).toBeTruthy();
+    // Check if the component renders at all
+    expect(container.innerHTML).not.toBe("");
+    // Check for the specific element
+    const dateTimeElement = container.querySelector("marimo-datetime");
+    expect(dateTimeElement).not.toBeNull();
   });
 });
